@@ -6,6 +6,8 @@ const firebaseConfig = {
   
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
+  const params = new URLSearchParams(window.location.search);
+  const listName = params.get("list") || "default";
   
   let items = [];
   
@@ -51,7 +53,7 @@ const firebaseConfig = {
           done: false
       });
   
-      firebase.database().ref("shoppingList").set(items);
+      firebase.database().ref("lists/" + listName).set(items);
   
       input.value = "";
   }
@@ -60,14 +62,14 @@ const firebaseConfig = {
   function deleteItem(index) {
       items.splice(index, 1);
   
-      firebase.database().ref("shoppingList").set(items);
+      firebase.database().ref("lists/" + listName).set(items);
   }
   
   // TOGGLE
   function toggleItem(index) {
       items[index].done = !items[index].done;
   
-      firebase.database().ref("shoppingList").set(items);
+      firebase.database().ref("lists/" + listName).set(items);
   }
   
   // ALLES LÖSCHEN
@@ -76,22 +78,22 @@ const firebaseConfig = {
   
       items = [];
   
-      firebase.database().ref("shoppingList").set(items);
+      firebase.database().ref("lists/" + listName).set(items);
   }
   
   // EDIT
   function editItem(index) {
-      let neuerText = prompt("Neuer Name:", items[index].name);
-  
-      if (!neuerText || neuerText.trim() === "") return;
-  
-      items[index].name = neuerText;
-  
-      firebase.database().ref("shoppingList").set(items);
-  }
+    let neuerText = prompt("Neuer Name:", items[index].name);
+
+    if (!neuerText || neuerText.trim() === "") return;
+
+    items[index].name = neuerText;
+
+    firebase.database().ref("lists/" + listName).set(items);
+}
   
   // DATEN LADEN
-  firebase.database().ref("shoppingList").on("value", (snapshot) => {
-      items = snapshot.val() || [];
-      renderList();
-  });
+  firebase.database().ref("lists/" + listName).on("value", (snapshot) => {
+    items = snapshot.val() || [];
+    renderList();
+});
