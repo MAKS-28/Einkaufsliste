@@ -3,6 +3,9 @@ body {
     background-color: rgb(255, 248, 220);
 
 }
+body.Mirac {
+    background-color: aquamarine;
+}
 
 button {
     background-color: black;

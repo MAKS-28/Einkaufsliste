@@ -10,6 +10,7 @@ const firebaseConfig = {
   const listName = params.get("list") || "default";
   
   let items = [];
+
   
   // DOM Elemente
   const input = document.getElementById("textfield");
@@ -97,3 +98,5 @@ const firebaseConfig = {
     items = snapshot.val() || [];
     renderList();
 });
+
+document.body.classList.add(listName);
