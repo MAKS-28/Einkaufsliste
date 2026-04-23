@@ -37,7 +37,7 @@ const firebaseConfig = {
   
                   ${item.name}
   
-                  <button onclick="deleteItem(${index})">X</button>
+                  <button onclick="deleteItem(${index})" class="delete-btn">X</button>
               </li>
           `;
       });
@@ -99,4 +99,4 @@ const firebaseConfig = {
     renderList();
 });
 
-document.body.classList.add(listName);
+document.body.classList.add(listName);  

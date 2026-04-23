@@ -3,8 +3,21 @@ body {
     background-color: rgb(255, 248, 220);
 
 }
-body.Mirac {
-    background-color: aquamarine;
+body.eayn {
+    background-color: black;
+    color: #0fc90f78;
+}
+body.eayn delete-btn {
+    background-color: black;
+    color: red;
+    padding: 0px 3px;
+    margin-left: 3px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+body.eayn ul {
+    list-style-type: none;
+    margin-left: -30px
 }
 
 button {
